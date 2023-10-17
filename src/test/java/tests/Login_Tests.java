@@ -30,4 +30,19 @@ public class Login_Tests extends Basic_Test {
                 "Password field doesn't have atribute type value 'password' ");
     }
 
+    @Test(priority = 3, retryAnalyzer = RetryAnalyzer.class)
+    public void displaysErrorsWhenUserDoesNotExist() {
+        nav_page.clickOnLoginButton();
+        loginPage.setEmail();
+        loginPage.setPassword();
+        loginPage.getLoginButton().click();
+        message_pop_up_page.waitUntilPopUpMessageIsVisible();
+        Assert.assertEquals(message_pop_up_page.getTextFromPopUpMessage(),
+                "User does not exists",
+                "Message from Pop-up should be 'User does not exists' ");
+        Assert.assertEquals(nav_page.getCurrentUrl(),
+                baseUrl + "/login",
+                "Url route does not contains '/login' ");
+    }
+
 }

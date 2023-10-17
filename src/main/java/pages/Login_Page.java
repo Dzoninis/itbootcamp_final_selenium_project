@@ -31,4 +31,17 @@ public class Login_Page extends Basic_Page {
         return getPassword().getAttribute("type");
     }
 
+    public void setEmail() {
+        getEmail().click();
+        getEmail().clear();
+        getEmail().sendKeys("non-existing-user@gmal.com");
+    }
+
+    public void setPassword() {
+        getPassword().click();
+        getPassword().clear();
+        getPassword().sendKeys("password123");
+    }
+
+
 }
