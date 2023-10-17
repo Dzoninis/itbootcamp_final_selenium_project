@@ -2,10 +2,11 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.RetryAnalyzer;
 
 public class Login_Tests extends Basic_Test {
 
-    @Test(priority = 1)
+    @Test(priority = 1, retryAnalyzer = RetryAnalyzer.class)
     public void visitTheLoginPage() {
         nav_page.clickOnLanguagebutton();
         nav_page.clickOnEnglishLanguage();
@@ -17,5 +18,16 @@ public class Login_Tests extends Basic_Test {
                 "Url route does not contains '/login' ");
     }
 
+    @Test(priority = 2, retryAnalyzer = RetryAnalyzer.class)
+    public void checksInputTypes() {
+        nav_page.clickOnLoginButton();
+        loginPage.getAtributeValueForEmail();
+        Assert.assertEquals(loginPage.getAtributeValueForEmail(), "email",
+                "Email field doesn't have atribute type value 'email' ");
+
+        loginPage.getAtributeValueForPassword();
+        Assert.assertEquals(loginPage.getAtributeValueForPassword(), "password",
+                "Password field doesn't have atribute type value 'password' ");
+    }
 
 }
