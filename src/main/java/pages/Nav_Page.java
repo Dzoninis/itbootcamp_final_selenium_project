@@ -67,4 +67,18 @@ public class Nav_Page extends Basic_Page {
         wait.withMessage("Logout button should be visible");
         wait.until(ExpectedConditions.visibilityOf(getLogoutButton()));
     }
+
+    public WebElement getSignupButton() {
+        return driver.findElement(By.cssSelector("[href='/signup'].btnLogin"));
+    }
+
+    public void clickToSignupButton() {
+        getSignupButton().click();
+    }
+
+    public void waitForUrlContainsSignup() {
+        wait.withMessage("Current url should contains '/signup' ");
+        wait.until(ExpectedConditions.urlContains("/signup"));
+    }
+
 }
