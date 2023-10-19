@@ -71,7 +71,21 @@ public class Login_Tests extends Basic_Test {
         loginPage.getEmail().sendKeys(email);
         loginPage.getPassword().sendKeys(password);
         loginPage.getLoginButton().click();
-        nav_page.waitForUrlContainsLogin();
+        nav_page.waitForUrlContainsHome();
+    }
+
+    @Test(priority = 6, retryAnalyzer = RetryAnalyzer.class)
+    public void verifyIfTheLogoutButtonIsVisible() {
+//        String email = "admin@admin.com";
+//        String password = "12345";
+
+//        nav_page.clickOnLoginButton();
+//        loginPage.getEmail().sendKeys(email);
+//        loginPage.getPassword().sendKeys(password);
+//        loginPage.getLoginButton().click();
+//        nav_page.waitForUrlContainsHome();
+        nav_page.waitForLogoutButtonToBeVisible();
+        nav_page.clickOnLogoutButton();
     }
 
 }

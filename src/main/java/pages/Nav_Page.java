@@ -50,9 +50,21 @@ public class Nav_Page extends Basic_Page {
         return driver.getCurrentUrl();
     }
 
-    public void waitForUrlContainsLogin() {
-        wait.withMessage("Current url should contains '/login' ");
-        wait.until(ExpectedConditions.urlContains("/login"));
+    public void waitForUrlContainsHome() {
+        wait.withMessage("Current url should contains '/home' ");
+        wait.until(ExpectedConditions.urlContains("/home"));
     }
 
+    public WebElement getLogoutButton() {
+        return driver.findElement(By.className("btnLogout"));
+    }
+
+    public void clickOnLogoutButton() {
+        getLogoutButton().click();
+    }
+
+    public void waitForLogoutButtonToBeVisible() {
+        wait.withMessage("Logout button should be visible");
+        wait.until(ExpectedConditions.visibilityOf(getLogoutButton()));
+    }
 }
