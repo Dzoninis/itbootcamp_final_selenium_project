@@ -45,4 +45,20 @@ public class Login_Tests extends Basic_Test {
                 "Url route does not contains '/login' ");
     }
 
+    @Test(priority = 4, retryAnalyzer = RetryAnalyzer.class)
+    public void displaysErrorsWhenPasswordIsWrong() {
+        String email = "admin@admin.com";
+
+        nav_page.clickOnLoginButton();
+        loginPage.getEmail().sendKeys(email);
+        loginPage.setPassword();
+        loginPage.getLoginButton().click();
+        message_pop_up_page.waitUntilPopUpMessageIsVisible();
+        Assert.assertEquals(message_pop_up_page.getTextFromPopUpMessage(),
+                "Wrong password",
+                "Message from Pop-up should be 'Wrong password' ");
+        Assert.assertEquals(nav_page.getCurrentUrl(),
+                baseUrl + "/login",
+                "Url route does not contains '/login' ");
+    }
 }
