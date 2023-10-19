@@ -46,8 +46,13 @@ public class Nav_Page extends Basic_Page {
         return getLoginButton().isDisplayed();
     }
 
-    public String getCurrentUrl () {
+    public String getCurrentUrl() {
         return driver.getCurrentUrl();
+    }
+
+    public void waitForUrlContainsLogin() {
+        wait.withMessage("Current url should contains '/login' ");
+        wait.until(ExpectedConditions.urlContains("/login"));
     }
 
 }

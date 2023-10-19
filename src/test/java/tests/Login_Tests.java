@@ -61,4 +61,17 @@ public class Login_Tests extends Basic_Test {
                 baseUrl + "/login",
                 "Url route does not contains '/login' ");
     }
+
+    @Test(priority = 5, retryAnalyzer = RetryAnalyzer.class)
+    public void login() {
+        String email = "admin@admin.com";
+        String password = "12345";
+
+        nav_page.clickOnLoginButton();
+        loginPage.getEmail().sendKeys(email);
+        loginPage.getPassword().sendKeys(password);
+        loginPage.getLoginButton().click();
+        nav_page.waitForUrlContainsLogin();
+    }
+
 }
