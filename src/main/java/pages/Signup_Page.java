@@ -7,6 +7,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Signup_Page extends Basic_Page {
 
+    String name = "Another User";
+    String email = "admin@admin.com";
+    String password = "12345";
+    String confirmPassword = "12345";
+
     public Signup_Page(WebDriver driver, WebDriverWait wait) {
         super(driver, wait);
     }
@@ -33,6 +38,30 @@ public class Signup_Page extends Basic_Page {
 
     public String getAtributeValueForConfirmPassword() {
         return getConfirmPasswordforSignup().getAttribute("type");
+    }
+
+    public WebElement getNameForSignup() {
+        return driver.findElement(By.id("name"));
+    }
+
+    public WebElement getSignMeUpButton() {
+        return driver.findElement(By.className("v-btn--is-elevated"));
+    }
+
+    public void clickOnSignMeUpButton() {
+        getSignMeUpButton().click();
+    }
+
+    public void signupWithWrongCredentials() {
+        getNameForSignup().sendKeys(name);
+        getEmailforSignup().sendKeys(email);
+        getPasswordforSignup().sendKeys(password);
+        getConfirmPasswordforSignup().sendKeys(confirmPassword);
+        clickOnSignMeUpButton();
+    }
+
+    public WebElement getPopupMessage() {
+        return driver.findElement(By.className("v-snack__wrapper"));
     }
 
 }

@@ -29,4 +29,17 @@ public class Signup_Tests extends Basic_Test {
                 "Password field doesn't have atribute type value 'confirmPassword' ");
     }
 
+    @Test(priority = 3, retryAnalyzer = RetryAnalyzer.class)
+    public void displaysErrorsWhenUserAlreadyExists() {
+        nav_page.clickToSignupButton();
+        nav_page.waitForUrlContainsSignup();
+        signup_page.signupWithWrongCredentials();
+        message_pop_up_page.waitUntilPopUpMessageIsVisible();
+
+        Assert.assertEquals(message_pop_up_page.getTextFromPopUpMessage(),
+                "E-mail already exists",
+                "Error message should be 'E-mail already exists");
+        nav_page.waitForUrlContainsSignup();
+    }
+
 }
