@@ -1,5 +1,6 @@
 package tests;
 
+import com.beust.ah.A;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.RetryAnalyzer;
@@ -40,6 +41,21 @@ public class Signup_Tests extends Basic_Test {
                 "E-mail already exists",
                 "Error message should be 'E-mail already exists");
         nav_page.waitForUrlContainsSignup();
+    }
+
+    @Test(priority = 4, retryAnalyzer = RetryAnalyzer.class)
+    public void signup() throws InterruptedException {
+        nav_page.clickToSignupButton();
+        nav_page.waitForUrlContainsSignup();
+        signup_page.signupSuccessfully();
+        nav_page.waitForUrlContainsHome();
+        message_pop_up_page.waitUntilPopUpMessageForSuccesfulLoginIsVisible();
+        Assert.assertEquals(message_pop_up_page.getTextFromPopUpMessageForSuccesfulLogin(),
+                "IMPORTANT: Verify your account",
+                "Dialogue message should contains text: 'IMPORTANT: Verify your account' ");
+
+        message_pop_up_page.clickOnCloseButtonForPopupMessage();
+        nav_page.clickOnLogoutButton();
     }
 
 }

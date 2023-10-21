@@ -64,4 +64,15 @@ public class Signup_Page extends Basic_Page {
         return driver.findElement(By.className("v-snack__wrapper"));
     }
 
+    public void signupSuccessfully() {
+        String validNameForSignup = "Nikola Stevanovic";
+        String validEmailForSignup = "nikola.stevanovic1@itbootcamp.rs";
+
+        getNameForSignup().sendKeys(validNameForSignup);
+        getEmailforSignup().sendKeys(validEmailForSignup);
+        getPasswordforSignup().sendKeys(password);
+        getConfirmPasswordforSignup().sendKeys(confirmPassword);
+        clickOnSignMeUpButton();
+    }
+
 }

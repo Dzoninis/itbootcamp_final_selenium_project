@@ -25,4 +25,25 @@ public class Message_Pop_Up_Page extends Basic_Page {
         return getPopUpMessage().getText();
     }
 
+    public WebElement getPopUpMessageForVerifyLogin() {
+        return driver.findElement(By.className("v-card__title"));
+    }
+
+    public void waitUntilPopUpMessageForSuccesfulLoginIsVisible() {
+        wait.withMessage("Pop-up message for account verify should be visible");
+        wait.until(ExpectedConditions.visibilityOf(getPopUpMessageForVerifyLogin()));
+    }
+
+    public String getTextFromPopUpMessageForSuccesfulLogin() {
+        return getPopUpMessageForVerifyLogin().getText();
+    }
+
+    public WebElement getCloseButtonForPopupMessage() {
+        return driver.findElement(By.cssSelector(".v-card__actions button"));
+    }
+
+    public void clickOnCloseButtonForPopupMessage() {
+        getCloseButtonForPopupMessage().click();
+    }
+
 }
