@@ -81,4 +81,50 @@ public class Nav_Page extends Basic_Page {
         wait.until(ExpectedConditions.urlContains("/signup"));
     }
 
+    public WebElement getAdminButton() {
+        return driver.findElement(By.className("btnAdmin"));
+    }
+
+    public void clickOnAdminButton() {
+        getAdminButton().click();
+    }
+
+    public WebElement getCitiesFromAdminMenu() {
+        return driver.findElement(By.className("v-list-item__title"));
+    }
+
+    public void clickOnCities() {
+        getCitiesFromAdminMenu().click();
+    }
+
+    public void waitUntilUrlContainsAdminCitiesroute() {
+        wait.withMessage("Current url should contains '/admin/cities' ");
+        wait.until(ExpectedConditions.urlContains("/admin/cities"));
+    }
+
+    public WebElement getEmailForLogin() {
+        return driver.findElement(By.id("email"));
+    }
+
+    public WebElement getPasswordForLogin() {
+        return driver.findElement(By.id("password"));
+    }
+
+    public WebElement getLoginButtonToGoOnAdminCitesPage() {
+        return driver.findElement(By.className("v-btn--is-elevated"));
+    }
+
+    public void clickOnLoginButtonForAdminCitiesPage() {
+        getLoginButtonToGoOnAdminCitesPage().click();
+    }
+
+    public void visitAdminCitiesPageWithAdminCredentials() {
+        String adminEmail = "admin@admin.com";
+        String adminPassword = "12345";
+
+        getEmailForLogin().sendKeys(adminEmail);
+        getPasswordForLogin().sendKeys(adminPassword);
+        clickOnLoginButtonForAdminCitiesPage();
+    }
+
 }

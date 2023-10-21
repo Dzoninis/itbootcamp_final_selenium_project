@@ -24,6 +24,7 @@ public abstract class Basic_Test {
     protected Login_Page loginPage;
     protected Message_Pop_Up_Page message_pop_up_page;
     protected Signup_Page signup_page;
+    protected Cities_Page cities_page;
 
     @BeforeClass
     public void setup() {
@@ -36,7 +37,7 @@ public abstract class Basic_Test {
         loginPage = new Login_Page(driver, wait);
         message_pop_up_page = new Message_Pop_Up_Page(driver, wait);
         signup_page = new Signup_Page(driver, wait);
-
+        cities_page = new Cities_Page(driver, wait);
     }
 
     @BeforeMethod
