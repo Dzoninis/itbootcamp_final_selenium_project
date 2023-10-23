@@ -37,4 +37,30 @@ public class Cities_Page extends Basic_Page {
         return getInputForNameOfTheCity().getAttribute("type");
     }
 
+    public void enterNameOfCity(String cityName) {
+        getInputForNameOfTheCity().clear();
+        getInputForNameOfTheCity().sendKeys(cityName);
+    }
+
+    public WebElement getSaveCityButton() {
+        return driver.findElement(By.className("btnSave"));
+    }
+
+    public void clickOnSaveCityButton() {
+        getSaveCityButton().click();
+    }
+
+    public WebElement getPopupMessageForSavedCity() {
+        return driver.findElement(By.cssSelector(".success .v-snack__content"));
+    }
+
+    public void waitUntilPopMessageForSavedCityIsVisible() {
+        wait.withMessage("Pop-up message for saved city should be visible");
+        wait.until(ExpectedConditions.visibilityOf(getPopupMessageForSavedCity()));
+    }
+
+    public boolean getMessageTextFromPopupForNewCity() {
+        return getPopupMessageForSavedCity().getText().contains("Saved successfully");
+    }
+
 }
