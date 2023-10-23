@@ -18,4 +18,17 @@ public class Admin_Cities_Tests extends Basic_Test {
                 "Url route does not contain '/admin/cities' ");
     }
 
+    @Test(priority = 2, retryAnalyzer = RetryAnalyzer.class)
+    public void checksInputTypesForCreate_EditNewCity() {
+//        nav_page.clickOnLoginButton();
+//        nav_page.visitAdminCitiesPageWithAdminCredentials();
+        nav_page.clickOnAdminButton();
+        nav_page.clickOnCities();
+        nav_page.waitUntilUrlContainsAdminCitiesroute();
+        cities_page.clickOnNewItemButton();
+        cities_page.waitUntilDialogeForEditAndCreateCityIsVisible();
+        Assert.assertEquals(cities_page.getAtributeValueForName(), "text",
+                "Name input field should have atribute value 'text'");
+    }
+
 }
