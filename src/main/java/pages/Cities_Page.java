@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class Cities_Page extends Basic_Page {
 
     public Cities_Page(WebDriver driver, WebDriverWait wait) {
@@ -61,6 +63,36 @@ public class Cities_Page extends Basic_Page {
 
     public boolean getMessageTextFromPopupForNewCity() {
         return getPopupMessageForSavedCity().getText().contains("Saved successfully");
+    }
+
+    public WebElement getSearchButton() {
+        return driver.findElement(By.id("search"));
+    }
+
+    public void clickOnSearchButton() {
+        getSearchButton().click();
+    }
+
+    public void searchForOldNameOfCity(String nameOfCity) {
+        getSearchButton().clear();
+        getSearchButton().sendKeys(nameOfCity);
+    }
+
+    public void waitUntilNumberOfRowsOfCitiesInSearchIs(int numberOfRows) {
+        wait.withMessage("Number of rows in search should be" + numberOfRows);
+        wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector("tbody tr"), numberOfRows));
+    }
+
+    public List<WebElement> getListOfEditButtons() {
+        return driver.findElements(By.cssSelector(".v-data-table__wrapper #edi"));
+    }
+
+    public WebElement getEditButtonFromRow() {
+        return driver.findElement(By.className("mdi-pencil"));
+    }
+
+    public void clickOnEditButtonFromRow() {
+        getEditButtonFromRow().click();
     }
 
 }
