@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -40,7 +41,8 @@ public class Cities_Page extends Basic_Page {
     }
 
     public void enterNameOfCity(String cityName) {
-        getInputForNameOfTheCity().clear();
+        getInputForNameOfTheCity().sendKeys(Keys.CONTROL + "a");
+        getInputForNameOfTheCity().sendKeys(Keys.DELETE);
         getInputForNameOfTheCity().sendKeys(cityName);
     }
 
@@ -93,6 +95,14 @@ public class Cities_Page extends Basic_Page {
 
     public void clickOnEditButtonFromRow() {
         getEditButtonFromRow().click();
+    }
+
+    public WebElement getCellFromCertainRow() {
+        return driver.findElement(By.cssSelector("tbody > tr > td:nth-child(2)"));
+    }
+
+    public String getTextFromCertainNameCell() {
+        return getCellFromCertainRow().getText();
     }
 
 }

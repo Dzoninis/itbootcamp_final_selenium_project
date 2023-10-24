@@ -64,11 +64,27 @@ public class Admin_Cities_Tests extends Basic_Test {
 
         cities_page.waitUntilNumberOfRowsOfCitiesInSearchIs(1);
         cities_page.clickOnEditButtonFromRow();
+        cities_page.waitUntilDialogeForEditAndCreateCityIsVisible();
         cities_page.enterNameOfCity(newCityName);
         cities_page.clickOnSaveCityButton();
         cities_page.waitUntilPopMessageForSavedCityIsVisible();
         Assert.assertTrue(cities_page.getMessageTextFromPopupForNewCity(),
                 "Message for saving city should be 'Saved successfully' ");
+    }
+
+    @Test(priority = 5, retryAnalyzer = RetryAnalyzer.class)
+    public void searchCity() {
+        String cityName = "Nikola Stevanovic's city Edited";
+
+//        nav_page.clickOnLoginButton();
+//        nav_page.visitAdminCitiesPageWithAdminCredentials();
+        nav_page.clickOnAdminButton();
+        nav_page.clickOnCities();
+        nav_page.waitUntilUrlContainsAdminCitiesroute();
+        cities_page.searchForOldNameOfCity(cityName);
+        cities_page.waitUntilNumberOfRowsOfCitiesInSearchIs(1);
+        Assert.assertEquals(cities_page.getTextFromCertainNameCell(),
+                cityName, "Text from certain row in Name field should be " + cityName);
     }
 
 }
