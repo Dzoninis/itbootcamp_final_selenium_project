@@ -105,4 +105,33 @@ public class Cities_Page extends Basic_Page {
         return getCellFromCertainRow().getText();
     }
 
+    public List<WebElement> getDeleteCitiesButtons() {
+        return driver.findElements(By.cssSelector(".v-data-table__wrapper tbody tr td #delete"));
+    }
+
+    public WebElement getDeleteButtonFromFirstRow(int rowNumber) {
+        return getDeleteCitiesButtons().get(rowNumber - 1);
+    }
+
+    public void clickOnDeleteButtonFromFirstRow(int rowNumber) {
+        getDeleteButtonFromFirstRow(rowNumber).click();
+    }
+
+    public WebElement getDialogeForDeleteCity() {
+        return driver.findElement(By.className("rounded-0"));
+    }
+
+    public void waitUntilMessageForDeleteCityIsVisible() {
+        wait.withMessage("Dialoge for delete city should be visible");
+        wait.until(ExpectedConditions.visibilityOf(getDialogeForDeleteCity()));
+    }
+
+    public WebElement getConfirmDeleteButtonFromDialoge() {
+        return driver.findElement(By.cssSelector(".v-dialog__content--active button.text--lighten3"));
+    }
+
+    public void clickOnConfirmDeleteButtonFromDialoge() {
+        getConfirmDeleteButtonFromDialoge().click();
+    }
+
 }

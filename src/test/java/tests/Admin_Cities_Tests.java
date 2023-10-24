@@ -87,4 +87,25 @@ public class Admin_Cities_Tests extends Basic_Test {
                 cityName, "Text from certain row in Name field should be " + cityName);
     }
 
+    @Test(priority = 6, retryAnalyzer = RetryAnalyzer.class)
+    public void deleteCity() {
+        String cityName = "Nikola Stevanovic's city Edited";
+
+//        nav_page.clickOnLoginButton();
+//        nav_page.visitAdminCitiesPageWithAdminCredentials();
+        nav_page.clickOnAdminButton();
+        nav_page.clickOnCities();
+        nav_page.waitUntilUrlContainsAdminCitiesroute();
+        cities_page.searchForOldNameOfCity(cityName);
+        cities_page.waitUntilNumberOfRowsOfCitiesInSearchIs(1);
+        Assert.assertEquals(cities_page.getTextFromCertainNameCell(),
+                cityName, "Text from certain row in Name field should be " + cityName);
+
+        cities_page.clickOnDeleteButtonFromFirstRow(1);
+        cities_page.waitUntilMessageForDeleteCityIsVisible();
+        cities_page.clickOnConfirmDeleteButtonFromDialoge();
+        message_pop_up_page.waitUntilPopUpMessageForDeleteCityIsVisible();
+        Assert.assertTrue(message_pop_up_page.getTextFromPopUpMessageForDeletedCity(),
+                "Pop-up message should contains text 'Deleted successfully' ");
+    }
 }

@@ -46,4 +46,17 @@ public class Message_Pop_Up_Page extends Basic_Page {
         getCloseButtonForPopupMessage().click();
     }
 
+    public WebElement getPopUpMessageForSuccessfulDeleteCity() {
+        return driver.findElement(By.cssSelector(".success .v-snack__content"));
+    }
+
+    public void waitUntilPopUpMessageForDeleteCityIsVisible() {
+        wait.withMessage("Pop-up message for delete city should be visible ")
+                .until(ExpectedConditions.visibilityOf(getPopUpMessageForSuccessfulDeleteCity()));
+    }
+
+    public boolean getTextFromPopUpMessageForDeletedCity() {
+        return getPopUpMessageForSuccessfulDeleteCity().getText().contains("Deleted successfully");
+    }
+
 }
