@@ -14,4 +14,12 @@ public class Auth_Routes_Tests extends Basic_Test {
                 "Current url should be " + baseUrl + "/login");
     }
 
+    @Test(priority = 2, retryAnalyzer = RetryAnalyzer.class)
+    public void forbidsVisitsToProfileUrlIfNotAuthenticated() {
+        driver.get(baseUrl + "/profile");
+        Assert.assertEquals(driver.getCurrentUrl(),
+                baseUrl + "/login",
+                "Current url should be " + baseUrl + "/login");
+    }
+
 }
