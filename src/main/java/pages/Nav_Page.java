@@ -127,4 +127,20 @@ public class Nav_Page extends Basic_Page {
         clickOnLoginButtonForAdminCitiesPage();
     }
 
+    public WebElement getSpanishLanguage() {
+        return driver.findElement(By.className("btnES"));
+    }
+
+    public void clickOnSpanishLanguage() {
+        getSpanishLanguage().click();
+    }
+
+    public WebElement getHeader() {
+        return driver.findElement(By.className("display-2"));
+    }
+
+    public String getTextFromHeader() {
+        return getHeader().getText();
+    }
+
 }
