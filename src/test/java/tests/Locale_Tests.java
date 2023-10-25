@@ -32,4 +32,13 @@ public class Locale_Tests extends Basic_Test {
                 "首页",
                 "Text in header should be '首页' ");
     }
+
+    @Test(priority = 4, retryAnalyzer = RetryAnalyzer.class)
+    public void SetLocaleToFR() {
+        nav_page.clickOnLanguagebutton();
+        nav_page.clickOnFrenchLanguage();
+        Assert.assertEquals(nav_page.getTextFromHeader(),
+                "Page d'atterrissage",
+                "Text in header should be 'Page d'atterrissage' ");
+    }
 }

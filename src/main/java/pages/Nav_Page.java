@@ -151,4 +151,11 @@ public class Nav_Page extends Basic_Page {
         getChineseLanguage().click();
     }
 
+    public WebElement getFrenchLanguage() {
+        return driver.findElement(By.className("btnFR"));
+    }
+
+    public void clickOnFrenchLanguage() {
+        getFrenchLanguage().click();
+    }
 }
