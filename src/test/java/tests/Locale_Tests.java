@@ -15,4 +15,12 @@ public class Locale_Tests extends Basic_Test {
                 "Text in header should be 'Página de aterrizaje' ");
     }
 
+    @Test(priority = 2, retryAnalyzer = RetryAnalyzer.class)
+    public void SetLocaleToEN() {
+        nav_page.clickOnLanguagebutton();
+        nav_page.clickOnEnglishLanguage();
+        Assert.assertEquals(nav_page.getTextFromHeader(),
+                "Landing",
+                "Text in header should be 'Landing' ");
+    }
 }
