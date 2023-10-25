@@ -143,4 +143,12 @@ public class Nav_Page extends Basic_Page {
         return getHeader().getText();
     }
 
+    public WebElement getChineseLanguage() {
+        return driver.findElement(By.className("btnCN"));
+    }
+
+    public void clickOnChineseLanguage() {
+        getChineseLanguage().click();
+    }
+
 }
